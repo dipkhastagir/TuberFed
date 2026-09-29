@@ -1,0 +1,3 @@
+model,params,size_MB_fp32,checkpoint_MB,gpu,gpu_ms_bs1,gpu_ms_bs1_sd,gpu_fps_bs1,gpu_imgs_per_s_bs32,gpu_peak_MB_bs1,cpu_ms_bs1,cpu_threads
+FL DenseNet121+Attention,11415170,43.87,44.14,Tesla T4,14.64,0.68,68.3,322.1,145.8,87.1,2
+FL DenseNet121 (no attention),7216770,27.85,28.13,Tesla T4,16.34,1.43,61.2,335.1,129.8,90.9,2

@@ -1,0 +1,426 @@
+{
+  "environment": {
+    "python": "3.12.13",
+    "torch": "2.10.0+cu128",
+    "torchvision": "0.25.0+cu128",
+    "numpy": "2.0.2",
+    "scikit-learn": "1.6.1",
+    "opencv": "4.13.0",
+    "gpu": "Tesla T4"
+  },
+  "config": {
+    "CLIENT_C_SOURCE": "tawsifur",
+    "CLIENT_C_SIZE": 1000,
+    "BLUR_THRESHOLD": 0,
+    "BLUR_RES": 512,
+    "NEAR_DUP_CORR": 0.985,
+    "SPLIT_ID": "69149d0a",
+    "SPLIT": [
+      0.7,
+      0.1,
+      0.2
+    ],
+    "DATA_SEED": 42,
+    "SEEDS": [
+      0,
+      1,
+      2
+    ],
+    "NUM_ROUNDS": 15,
+    "LOCAL_EPOCHS": 2,
+    "BATCH_SIZE": 32,
+    "LR": 0.0001,
+    "WEIGHTED_FEDAVG": true,
+    "USE_AMP": true,
+    "model_selection": "lowest validation loss"
+  },
+  "cleaning": [
+    {
+      "source": "Shenzhen",
+      "label": 0,
+      "duplicate": 0,
+      "ok": 326
+    },
+    {
+      "source": "Shenzhen",
+      "label": 1,
+      "duplicate": 0,
+      "ok": 336
+    },
+    {
+      "source": "Tawsifur",
+      "label": 0,
+      "duplicate": 0,
+      "ok": 3500
+    },
+    {
+      "source": "Tawsifur",
+      "label": 1,
+      "duplicate": 3,
+      "ok": 697
+    }
+  ],
+  "near_duplicates_removed": 3,
+  "table1": [
+    {
+      "set": "Client A (Tawsifur)",
+      "sources": "Tawsifur",
+      "TB": 488,
+      "Normal": 488,
+      "Total": 976
+    },
+    {
+      "set": "Client B (Shenzhen)",
+      "sources": "Shenzhen",
+      "TB": 235,
+      "Normal": 228,
+      "Total": 463
+    },
+    {
+      "set": "Client C (Tawsifur normal)",
+      "sources": "Tawsifur",
+      "TB": 0,
+      "Normal": 1000,
+      "Total": 1000
+    },
+    {
+      "set": "Validation",
+      "sources": "Shenzhen, Tawsifur",
+      "TB": 102,
+      "Normal": 102,
+      "Total": 204
+    },
+    {
+      "set": "Test",
+      "sources": "Shenzhen, Tawsifur",
+      "TB": 205,
+      "Normal": 202,
+      "Total": 407
+    }
+  ],
+  "table4_main": {
+    "seed": 0,
+    "confusion": {
+      "tp": 154,
+      "fn": 51,
+      "tn": 200,
+      "fp": 2
+    },
+    "metrics": {
+      "accuracy": 0.8697788697788698,
+      "sensitivity": 0.751219512195122,
+      "specificity": 0.9900990099009901,
+      "precision": 0.9871794871794872,
+      "f1": 0.853185595567867,
+      "auc": 0.9659864766964501,
+      "ap": 0.9733618763334777,
+      "kappa": 0.7400050622536671,
+      "mcc": 0.7623568494231274,
+      "ece": 0.1224584028156845,
+      "brier": 0.11292201329917861
+    },
+    "ci95": {
+      "accuracy": [
+        0.8378378378378378,
+        0.8992628992628993
+      ],
+      "sensitivity": [
+        0.6923076923076923,
+        0.8074917729329494
+      ],
+      "specificity": [
+        0.9748743718592965,
+        1.0
+      ],
+      "f1": [
+        0.8134535278934859,
+        0.8889031705227076
+      ],
+      "auc": [
+        0.9483077411640646,
+        0.9807211549857413
+      ]
+    },
+    "best_round": 7
+  },
+  "table5_ablation": [
+    {
+      "model": "FL DenseNet121 (no attention)",
+      "params (M)": 7.22,
+      "best round (per seed)": "10, 14, 9",
+      "accuracy": "0.8788 \u00b1 0.0228",
+      "sensitivity": "0.8276 \u00b1 0.0750",
+      "specificity": "0.9307 \u00b1 0.0301",
+      "precision": "0.9258 \u00b1 0.0262",
+      "f1": "0.8719 \u00b1 0.0320",
+      "auc": "0.9496 \u00b1 0.0189",
+      "ap": "0.9606 \u00b1 0.0138",
+      "kappa": "0.7578 \u00b1 0.0454",
+      "mcc": "0.7645 \u00b1 0.0351",
+      "ece": "0.0674 \u00b1 0.0283",
+      "brier": "0.0921 \u00b1 0.0215"
+    },
+    {
+      "model": "FL DenseNet121+Attention",
+      "params (M)": 11.42,
+      "best round (per seed)": "7, 2, 9",
+      "accuracy": "0.8493 \u00b1 0.0178",
+      "sensitivity": "0.7057 \u00b1 0.0394",
+      "specificity": "0.9950 \u00b1 0.0050",
+      "precision": "0.9934 \u00b1 0.0064",
+      "f1": "0.8247 \u00b1 0.0247",
+      "auc": "0.9458 \u00b1 0.0339",
+      "ap": "0.9587 \u00b1 0.0244",
+      "kappa": "0.6992 \u00b1 0.0354",
+      "mcc": "0.7312 \u00b1 0.0272",
+      "ece": "0.1438 \u00b1 0.0185",
+      "brier": "0.1364 \u00b1 0.0205"
+    },
+    {
+      "model": "Centralised DenseNet121+Attention",
+      "params (M)": 11.42,
+      "best round (per seed)": "23, 16, 28",
+      "accuracy": "0.9672 \u00b1 0.0121",
+      "sensitivity": "0.9577 \u00b1 0.0269",
+      "specificity": "0.9769 \u00b1 0.0057",
+      "precision": "0.9769 \u00b1 0.0052",
+      "f1": "0.9670 \u00b1 0.0127",
+      "auc": "0.9943 \u00b1 0.0037",
+      "ap": "0.9950 \u00b1 0.0028",
+      "kappa": "0.9345 \u00b1 0.0242",
+      "mcc": "0.9350 \u00b1 0.0235",
+      "ece": "0.0235 \u00b1 0.0038",
+      "brier": "0.0262 \u00b1 0.0078"
+    }
+  ],
+  "per_run": {
+    "FL DenseNet121 (no attention) | seed 0": {
+      "accuracy": 0.8525798525798526,
+      "sensitivity": 0.7414634146341463,
+      "specificity": 0.9653465346534653,
+      "precision": 0.9559748427672956,
+      "f1": 0.8351648351648352,
+      "auc": 0.9280850036223134,
+      "ap": 0.9447687024699506,
+      "kappa": 0.7056341763301912,
+      "mcc": 0.7243206499041283,
+      "ece": 0.09673231629613578,
+      "brier": 0.1168413189586848
+    },
+    "FL DenseNet121+Attention | seed 0": {
+      "accuracy": 0.8697788697788698,
+      "sensitivity": 0.751219512195122,
+      "specificity": 0.9900990099009901,
+      "precision": 0.9871794871794872,
+      "f1": 0.853185595567867,
+      "auc": 0.9659864766964501,
+      "ap": 0.9733618763334777,
+      "kappa": 0.7400050622536671,
+      "mcc": 0.7623568494231274,
+      "ece": 0.1224584028156845,
+      "brier": 0.11292201329917861
+    },
+    "Centralised DenseNet121+Attention | seed 0": {
+      "accuracy": 0.9533169533169533,
+      "sensitivity": 0.926829268292683,
+      "specificity": 0.9801980198019802,
+      "precision": 0.979381443298969,
+      "f1": 0.9523809523809523,
+      "auc": 0.9901231586573292,
+      "ap": 0.9918791584865891,
+      "kappa": 0.9066660229563203,
+      "mcc": 0.9079925844368301,
+      "ece": 0.027900242512125764,
+      "brier": 0.03521092279732618
+    },
+    "FL DenseNet121 (no attention) | seed 1": {
+      "accuracy": 0.8894348894348895,
+      "sensitivity": 0.8634146341463415,
+      "specificity": 0.9158415841584159,
+      "precision": 0.9123711340206185,
+      "f1": 0.8872180451127819,
+      "auc": 0.9636681960879014,
+      "ap": 0.9705071343507893,
+      "kappa": 0.7789458438439163,
+      "mcc": 0.780085535335252,
+      "ece": 0.06532342738817452,
+      "brier": 0.08148303397008687
+    },
+    "FL DenseNet121+Attention | seed 1": {
+      "accuracy": 0.8378378378378378,
+      "sensitivity": 0.6829268292682927,
+      "specificity": 0.995049504950495,
+      "precision": 0.9929078014184397,
+      "f1": 0.8092485549132948,
+      "auc": 0.9067133542622554,
+      "ap": 0.9304737842696232,
+      "kappa": 0.6764082301354021,
+      "mcc": 0.7123882948822475,
+      "ece": 0.15423292117948467,
+      "brier": 0.15073205832837225
+    },
+    "Centralised DenseNet121+Attention | seed 1": {
+      "accuracy": 0.9754299754299754,
+      "sensitivity": 0.9707317073170731,
+      "specificity": 0.9801980198019802,
+      "precision": 0.9802955665024631,
+      "f1": 0.9754901960784313,
+      "auc": 0.9958947114223617,
+      "ap": 0.9959965233841827,
+      "kappa": 0.950860840798783,
+      "mcc": 0.9509067641805639,
+      "ece": 0.021347154394085056,
+      "brier": 0.021483466334447397
+    },
+    "FL DenseNet121 (no attention) | seed 2": {
+      "accuracy": 0.8943488943488943,
+      "sensitivity": 0.8780487804878049,
+      "specificity": 0.9108910891089109,
+      "precision": 0.9090909090909091,
+      "f1": 0.8933002481389578,
+      "auc": 0.9569669162038156,
+      "ap": 0.9664874362584528,
+      "kappa": 0.7887398751825787,
+      "mcc": 0.7892067317700043,
+      "ece": 0.040156596310491635,
+      "brier": 0.07797876801567127
+    },
+    "FL DenseNet121+Attention | seed 2": {
+      "accuracy": 0.8402948402948403,
+      "sensitivity": 0.6829268292682927,
+      "specificity": 1.0,
+      "precision": 1.0,
+      "f1": 0.8115942028985508,
+      "auc": 0.9648152620140062,
+      "ap": 0.972140260359491,
+      "kappa": 0.6813226525326748,
+      "mcc": 0.7187984655855016,
+      "ece": 0.1546674366143397,
+      "brier": 0.14558527428615264
+    },
+    "Centralised DenseNet121+Attention | seed 2": {
+      "accuracy": 0.972972972972973,
+      "sensitivity": 0.975609756097561,
+      "specificity": 0.9702970297029703,
+      "precision": 0.970873786407767,
+      "f1": 0.9732360097323601,
+      "auc": 0.996981405457619,
+      "ap": 0.9972476683894429,
+      "kappa": 0.9459410507504498,
+      "mcc": 0.945952474055481,
+      "ece": 0.021271852783702038,
+      "brier": 0.02199674804650085
+    }
+  },
+  "stats": [
+    {
+      "seed": 0,
+      "only_proposed_correct": 14,
+      "only_baseline_correct": 7,
+      "mcnemar_p": 0.18924713134765625,
+      "d_acc": 0.01733906633906634,
+      "d_acc_ci": "[-0.0049, 0.0394]",
+      "d_auc": 0.03806861400913968,
+      "d_auc_ci": "[0.0186, 0.0605]"
+    },
+    {
+      "seed": 1,
+      "only_proposed_correct": 16,
+      "only_baseline_correct": 37,
+      "mcnemar_p": 0.005486344876760141,
+      "d_acc": -0.051287469287469294,
+      "d_acc_ci": "[-0.0860, -0.0172]",
+      "d_auc": -0.05652928571720796,
+      "d_auc_ci": "[-0.0785, -0.0389]"
+    },
+    {
+      "seed": 2,
+      "only_proposed_correct": 18,
+      "only_baseline_correct": 40,
+      "mcnemar_p": 0.005354859650800294,
+      "d_acc": -0.054157248157248164,
+      "d_acc_ci": "[-0.0910, -0.0171]",
+      "d_auc": 0.007782369288931865,
+      "d_auc_ci": "[-0.0080, 0.0234]"
+    }
+  ],
+  "per_source": [
+    {
+      "source": "Shenzhen",
+      "n": 133,
+      "accuracy": 0.6240601503759399,
+      "sensitivity": 0.2647058823529412,
+      "specificity": 1.0,
+      "auc": 0.8778280542986426
+    },
+    {
+      "source": "Tawsifur",
+      "n": 274,
+      "accuracy": 0.9890510948905109,
+      "sensitivity": 0.9927007299270073,
+      "specificity": 0.9854014598540146,
+      "auc": 0.999893441312803
+    }
+  ],
+  "source_probe": [
+    {
+      "cls": "Normal",
+      "sources": "Shenzhen, Tawsifur",
+      "n": 202,
+      "balanced_acc_mean": 0.9394485144485145,
+      "balanced_acc_sd": 0.040505543612806706
+    },
+    {
+      "cls": "TB",
+      "sources": "Shenzhen, Tawsifur",
+      "n": 205,
+      "balanced_acc_mean": 0.9737688237688238,
+      "balanced_acc_sd": 0.0286189883230027
+    }
+  ],
+  "gradcam": {
+    "n_tb_images": 205,
+    "border_energy_mean": 0.245749831199646,
+    "border_energy_uniform": 0.35427295918367346,
+    "upper_half_energy_mean": 0.38894712924957275,
+    "upper_half_uniform": 0.5
+  },
+  "saliency": {
+    "n_images": 50,
+    "noise_sigma": 0.05,
+    "spearman_mean": 0.41567194941602054,
+    "spearman_sd": 0.10103204418428169,
+    "top10_iou_mean": 0.18733332052662197,
+    "top10_iou_sd": 0.059022663564905944
+  },
+  "efficiency": [
+    {
+      "model": "FL DenseNet121+Attention",
+      "params": 11415170,
+      "size_MB_fp32": 43.87,
+      "checkpoint_MB": 44.14,
+      "gpu": "Tesla T4",
+      "gpu_ms_bs1": 14.64,
+      "gpu_ms_bs1_sd": 0.68,
+      "gpu_fps_bs1": 68.3,
+      "gpu_imgs_per_s_bs32": 322.1,
+      "gpu_peak_MB_bs1": 145.8,
+      "cpu_ms_bs1": 87.1,
+      "cpu_threads": 2
+    },
+    {
+      "model": "FL DenseNet121 (no attention)",
+      "params": 7216770,
+      "size_MB_fp32": 27.85,
+      "checkpoint_MB": 28.13,
+      "gpu": "Tesla T4",
+      "gpu_ms_bs1": 16.34,
+      "gpu_ms_bs1_sd": 1.43,
+      "gpu_fps_bs1": 61.2,
+      "gpu_imgs_per_s_bs32": 335.1,
+      "gpu_peak_MB_bs1": 129.8,
+      "cpu_ms_bs1": 90.9,
+      "cpu_threads": 2
+    }
+  ]
+}
